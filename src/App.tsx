@@ -3,7 +3,7 @@ import CardBox from "./components/CardBox";
 
 function App() {
   return (
-    <Box height="100vh">
+    <Box height="100vh" backgroundColor="teal.700">
       <CardBox />
     </Box>
   );

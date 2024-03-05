@@ -3,34 +3,42 @@ import {
   CardHeader,
   CardBody,
   Text,
-  Button,
   AbsoluteCenter,
   Input,
   InputGroup,
   InputLeftElement,
+  Badge,
+  HStack,
 } from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
 const CardBox = () => {
   return (
     <>
       <AbsoluteCenter>
-        <Card>
+        <Card backgroundColor="teal.400" padding=" 14.4px">
           <CardHeader>
-            <InputGroup>
+            <InputGroup marginBottom={4}>
               <InputLeftElement
                 pointerEvents="none"
                 borderRight="1px black dotted"
               >
                 <CiSearch />
               </InputLeftElement>
-              <Input type="text" borderRadius={20} />
+              <Input type="text" borderRadius={20} paddingStart={12} />
             </InputGroup>
-            <Text>Rome</Text>
+            <Text textAlign="center" fontSize={20}>
+              Rome
+            </Text>
           </CardHeader>
           <CardBody>
-            <Text>temperature</Text>
-            <Text>wind speed</Text>
-            <Button>click me</Button>
+            <HStack justifyContent="space-between">
+              <Text>temperature</Text>
+              <Badge>23</Badge>
+            </HStack>
+            <HStack justifyContent="space-between">
+              <Text>wind speed</Text>
+              <Badge>26</Badge>
+            </HStack>
           </CardBody>
         </Card>
       </AbsoluteCenter>
