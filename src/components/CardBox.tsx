@@ -23,6 +23,7 @@ const CardBox = () => {
   };
 
   if (err) return err;
+
   return (
     <>
       <AbsoluteCenter>
@@ -44,7 +45,11 @@ const CardBox = () => {
               />
             </InputGroup>
             <Text textAlign="center" fontSize={20}>
-              {input}
+              {city?.map((c) => (
+                <ol>
+                  <li key={c.id}>{c.name}</li>
+                </ol>
+              ))}
             </Text>
           </CardHeader>
           <CardBody>

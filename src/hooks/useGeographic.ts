@@ -12,27 +12,29 @@ interface City {
 }
 
 interface Data {
-  results: City[];
+  results: City[] | undefined;
 }
 
 const useGeographic = (input: string | undefined) => {
-  const [city, setCity] = useState<City[]>([]);
+  const [city, setCity] = useState<City[] | undefined>([]);
   const [err, setErr] = useState("");
-  console.log(input);
 
   useEffect(() => {
     const controller = new AbortController();
     axios
-      .get<Data>(`https://geocoding-api.open-meteo.com/v1/search?name=tehran`, {
-        signal: controller.signal,
-      })
+      .get<Data>(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${input}`,
+        {
+          signal: controller.signal,
+        }
+      )
       .then(({ data }) => setCity(data.results))
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setErr(err.message);
       });
     return () => controller.abort();
-  }, []);
+  }, [input]);
   return { city, err };
 };
 
