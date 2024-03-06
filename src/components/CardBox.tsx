@@ -11,7 +11,12 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
+import useGeographic from "../hooks/useGeographic";
+
 const CardBox = () => {
+  const { city, err } = useGeographic();
+
+  if (err) return err;
   return (
     <>
       <AbsoluteCenter>
