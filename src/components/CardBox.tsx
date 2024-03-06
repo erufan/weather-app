@@ -12,9 +12,15 @@ import {
 } from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
 import useGeographic from "../hooks/useGeographic";
+import { useState } from "react";
 
 const CardBox = () => {
-  const { city, err } = useGeographic();
+  const [input, setInput] = useState<string | undefined>("");
+  const { city, err } = useGeographic(input);
+
+  const handleChange = (value: string) => {
+    setInput(value);
+  };
 
   if (err) return err;
   return (
@@ -29,10 +35,16 @@ const CardBox = () => {
               >
                 <CiSearch />
               </InputLeftElement>
-              <Input type="text" borderRadius={20} paddingStart={12} />
+              <Input
+                type="text"
+                borderRadius={20}
+                paddingStart={12}
+                value={input}
+                onChange={(e) => handleChange(e.target.value)}
+              />
             </InputGroup>
             <Text textAlign="center" fontSize={20}>
-              Rome
+              {input}
             </Text>
           </CardHeader>
           <CardBody>

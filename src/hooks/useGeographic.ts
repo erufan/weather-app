@@ -15,9 +15,10 @@ interface Data {
   results: City[];
 }
 
-const useGeographic = () => {
+const useGeographic = (input: string | undefined) => {
   const [city, setCity] = useState<City[]>([]);
   const [err, setErr] = useState("");
+  console.log(input);
 
   useEffect(() => {
     const controller = new AbortController();
