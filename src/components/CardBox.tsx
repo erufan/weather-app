@@ -9,6 +9,7 @@ import {
   InputLeftElement,
   Badge,
   HStack,
+  Spinner,
 } from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
 import useGeographic from "../hooks/useGeographic";
@@ -16,7 +17,7 @@ import { useState } from "react";
 
 const CardBox = () => {
   const [input, setInput] = useState<string | undefined>("");
-  const { city, err } = useGeographic(input);
+  const { city, err, isLoading } = useGeographic(input);
 
   const handleChange = (value: string) => {
     setInput(value);
@@ -44,13 +45,17 @@ const CardBox = () => {
                 onChange={(e) => handleChange(e.target.value)}
               />
             </InputGroup>
-            <Text textAlign="center" fontSize={20}>
-              {city?.map((c) => (
-                <ol>
-                  <li key={c.id}>{c.name}</li>
-                </ol>
-              ))}
-            </Text>
+            {isLoading && input ? (
+              <Spinner color="red.500" />
+            ) : (
+              <Text textAlign="center" fontSize={20}>
+                {city?.map((c) => (
+                  <ol>
+                    <li key={c.id}>{c.name}</li>
+                  </ol>
+                ))}
+              </Text>
+            )}
           </CardHeader>
           <CardBody>
             <HStack justifyContent="space-between">
