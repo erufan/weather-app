@@ -1,6 +1,7 @@
-import axios, { CanceledError } from "axios";
+import { CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import City from "../interfaces/City";
+import apiClient from "../services/apiClient";
 
 interface Data {
   results: City[] | undefined;
@@ -14,13 +15,8 @@ const useGeographic = (input: string | undefined) => {
   useEffect(() => {
     const controller = new AbortController();
     setIsLoading(true);
-    axios
-      .get<Data>(
-        `https://geocoding-api.open-meteo.com/v1/search?name=${input}`,
-        {
-          signal: controller.signal,
-        }
-      )
+    apiClient
+      .get<Data>(`/search?name=${input}`, { signal: controller.signal })
       .then(({ data }) => {
         setIsLoading(false);
         setCity(data.results);
