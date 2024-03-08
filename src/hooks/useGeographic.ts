@@ -1,15 +1,6 @@
 import axios, { CanceledError } from "axios";
 import { useEffect, useState } from "react";
-
-interface City {
-  country: string;
-  country_id: number;
-  id: number;
-  latitude: number;
-  longitude: number;
-  name: string;
-  population: number;
-}
+import City from "../interfaces/City";
 
 interface Data {
   results: City[] | undefined;
