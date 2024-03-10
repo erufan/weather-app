@@ -51,11 +51,16 @@ const CardBox = () => {
               <Spinner color="red.500" />
             ) : (
               <Text textAlign="center" fontSize={20}>
-                {city?.map((c) => (
-                  <ol>
-                    <li key={c.id}>{c.name}</li>
-                  </ol>
-                ))}
+                <ol>
+                  {city?.map(
+                    (c) =>
+                      c.population && (
+                        <li>
+                          {c.name} {c.country} {c.population}
+                        </li>
+                      )
+                  )}
+                </ol>
               </Text>
             )}
           </CardHeader>
