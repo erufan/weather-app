@@ -14,10 +14,12 @@ import {
 import { CiSearch } from "react-icons/ci";
 import useGeographic from "../hooks/useGeographic";
 import { useState } from "react";
+import useWeather from "../hooks/useWeather";
 
 const CardBox = () => {
   const [input, setInput] = useState<string | undefined>("");
   const { city, err, isLoading } = useGeographic(input);
+  const { weather } = useWeather();
 
   const handleChange = (value: string) => {
     setInput(value);
@@ -60,11 +62,11 @@ const CardBox = () => {
           <CardBody>
             <HStack justifyContent="space-between">
               <Text>temperature</Text>
-              <Badge>23</Badge>
+              <Badge>{weather?.temperature_2m}</Badge>
             </HStack>
             <HStack justifyContent="space-between">
               <Text>wind speed</Text>
-              <Badge>26</Badge>
+              <Badge>{weather?.wind_speed_10m}</Badge>
             </HStack>
           </CardBody>
         </Card>
