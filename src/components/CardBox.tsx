@@ -10,6 +10,11 @@ import {
   Badge,
   HStack,
   Spinner,
+  Menu,
+  MenuItem,
+  MenuButton,
+  Button,
+  MenuList,
 } from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
 import useGeographic from "../hooks/useGeographic";
@@ -32,37 +37,42 @@ const CardBox = () => {
       <AbsoluteCenter>
         <Card backgroundColor="teal.400" padding=" 14.4px">
           <CardHeader>
-            <InputGroup marginBottom={4}>
-              <InputLeftElement
-                pointerEvents="none"
-                borderRight="1px black dotted"
-              >
-                <CiSearch />
-              </InputLeftElement>
-              <Input
-                type="text"
-                borderRadius={20}
-                paddingStart={12}
-                value={input}
-                onChange={(e) => handleChange(e.target.value)}
-              />
-            </InputGroup>
-            {isLoading && input ? (
-              <Spinner color="red.500" />
-            ) : (
-              <Text textAlign="center" fontSize={20}>
-                <ol>
-                  {city?.map(
-                    (c) =>
-                      c.population && (
-                        <li>
-                          {c.name} {c.country} {c.population}
-                        </li>
-                      )
+            <Menu>
+              <MenuButton as={Button}>search your city</MenuButton>
+              <MenuList>
+                <InputGroup marginBottom={4}>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    borderRight="1px black dotted"
+                  >
+                    <CiSearch />
+                  </InputLeftElement>
+                  <Input
+                    type="text"
+                    borderRadius={20}
+                    paddingStart={12}
+                    value={input}
+                    onChange={(e) => handleChange(e.target.value)}
+                  />
+                </InputGroup>
+                <MenuItem textAlign="center" fontSize={20}>
+                  {isLoading && input ? (
+                    <Spinner color="red.500" />
+                  ) : (
+                    <ol>
+                      {city?.map(
+                        (c) =>
+                          c.population && (
+                            <li>
+                              {c.name} {c.country} {c.population}
+                            </li>
+                          )
+                      )}
+                    </ol>
                   )}
-                </ol>
-              </Text>
-            )}
+                </MenuItem>
+              </MenuList>
+            </Menu>
           </CardHeader>
           <CardBody>
             <HStack justifyContent="space-between">
