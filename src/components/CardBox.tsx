@@ -15,6 +15,8 @@ import {
   MenuButton,
   Button,
   MenuList,
+  OrderedList,
+  ListItem,
 } from "@chakra-ui/react";
 import { CiSearch } from "react-icons/ci";
 import useGeographic from "../hooks/useGeographic";
@@ -59,16 +61,16 @@ const CardBox = () => {
                   {isLoading && input ? (
                     <Spinner color="red.500" />
                   ) : (
-                    <ol>
+                    <OrderedList>
                       {city?.map(
                         (c) =>
                           c.population && (
-                            <li>
+                            <ListItem key={c.id}>
                               {c.name} {c.country} {c.population}
-                            </li>
+                            </ListItem>
                           )
                       )}
-                    </ol>
+                    </OrderedList>
                   )}
                 </MenuItem>
               </MenuList>
