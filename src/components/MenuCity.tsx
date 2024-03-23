@@ -12,6 +12,7 @@ import SearchCity from "./SearchCity";
 import City from "../interfaces/City";
 import { useContext } from "react";
 import InputContext from "../context/InputContext";
+import LocationContext from "../context/LocationContext";
 
 interface Props {
   city: City[] | undefined;
@@ -22,6 +23,7 @@ interface Props {
 const MenuCity = ({ city, err, isLoading }: Props) => {
   if (err) return err;
   const { input } = useContext(InputContext);
+  const { setLocation } = useContext(LocationContext);
 
   return (
     <Menu>
@@ -36,7 +38,15 @@ const MenuCity = ({ city, err, isLoading }: Props) => {
               {city?.map(
                 (c) =>
                   c.population && (
-                    <ListItem key={c.id}>
+                    <ListItem
+                      key={c.id}
+                      onClick={() =>
+                        setLocation({
+                          longitude: c.longitude,
+                          latitude: c.latitude,
+                        })
+                      }
+                    >
                       {c.name} {c.country} {c.population}
                     </ListItem>
                   )

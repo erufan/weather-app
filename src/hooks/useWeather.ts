@@ -1,5 +1,6 @@
 import axios, { CanceledError } from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import LocationContext from "../context/LocationContext";
 
 interface Current {
   temperature_2m: number;
@@ -14,13 +15,15 @@ const useWeather = () => {
   const [weather, setWeather] = useState<Current>();
   const [err, setErr] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const { location } = useContext(LocationContext);
+  const { latitude, longitude } = location;
 
   useEffect(() => {
     const controller = new AbortController();
     setIsLoading(true);
     axios
       .get<Data>(
-        `https://api.open-meteo.com/v1/forecast?latitude=-32.8337&longitude=-70.5983&current=temperature_2m,wind_speed_10m`,
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m`,
         { signal: controller.signal }
       )
       .then(({ data }) => {
@@ -34,7 +37,7 @@ const useWeather = () => {
       });
 
     return () => controller.abort();
-  }, []);
+  }, [location]);
   return { weather, err, isLoading };
 };
 
