@@ -1,12 +1,11 @@
 import { InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
+import { useContext } from "react";
 import { CiSearch } from "react-icons/ci";
+import InputContext from "../context/InputContext";
 
-interface Props {
-  input: string | undefined;
-  onChange: (input: string) => void;
-}
+const SearchCity = () => {
+  const { input, setInput } = useContext(InputContext);
 
-const SearchCity = ({ input, onChange }: Props) => {
   return (
     <InputGroup marginBottom={4}>
       <InputLeftElement pointerEvents="none" borderRight="1px black dotted">
@@ -17,7 +16,7 @@ const SearchCity = ({ input, onChange }: Props) => {
         borderRadius={20}
         paddingStart={12}
         value={input}
-        onChange={(i) => onChange(i.target.value)}
+        onChange={(i) => setInput(i.target.value)}
       />
     </InputGroup>
   );

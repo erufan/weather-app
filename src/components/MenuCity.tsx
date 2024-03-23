@@ -9,20 +9,25 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import SearchCity from "./SearchCity";
-import { useState } from "react";
-import useGeographic from "../hooks/useGeographic";
+import City from "../interfaces/City";
+import { useContext } from "react";
+import InputContext from "../context/InputContext";
 
-const MenuCity = () => {
-  const [input, setInput] = useState<string | undefined>("");
-  const { city, err, isLoading } = useGeographic(input);
+interface Props {
+  city: City[] | undefined;
+  err: string;
+  isLoading: boolean;
+}
 
+const MenuCity = ({ city, err, isLoading }: Props) => {
   if (err) return err;
+  const { input } = useContext(InputContext);
 
   return (
     <Menu>
       <MenuButton as={Button}>search your city</MenuButton>
       <MenuList>
-        <SearchCity input={input} onChange={(e) => setInput(e)} />
+        <SearchCity />
         <MenuItem textAlign="center" fontSize={20}>
           {isLoading && input ? (
             <Spinner color="red.500" />
