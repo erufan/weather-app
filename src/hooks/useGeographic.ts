@@ -1,7 +1,7 @@
 import { CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import City from "../interfaces/City";
-import apiClient from "../services/apiClient";
+import apiClientGeo from "../services/apiClientGeo";
 
 interface Data {
   results: City[] | undefined;
@@ -15,7 +15,7 @@ const useGeographic = (input: string | undefined) => {
   useEffect(() => {
     const controller = new AbortController();
     setIsLoading(true);
-    apiClient
+    apiClientGeo
       .get<Data>(`/search?name=${input}`, { signal: controller.signal })
       .then(({ data }) => {
         setIsLoading(false);

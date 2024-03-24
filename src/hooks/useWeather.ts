@@ -1,6 +1,7 @@
-import axios, { CanceledError } from "axios";
+import { CanceledError } from "axios";
 import { useContext, useEffect, useState } from "react";
 import LocationContext from "../context/LocationContext";
+import apiClientMeto from "../services/apiClientMeto";
 
 interface Current {
   temperature_2m: number;
@@ -21,20 +22,23 @@ const useWeather = () => {
   useEffect(() => {
     const controller = new AbortController();
     setIsLoading(true);
-    axios
-      .get<Data>(
-        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m`,
-        { signal: controller.signal }
-      )
-      .then(({ data }) => {
-        setIsLoading(false);
-        setWeather(data.current);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setErr(err.message);
-        setIsLoading(false);
-      });
+    latitude &&
+      longitude &&
+      apiClientMeto
+        .get<Data>(
+          `/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m`,
+          { signal: controller.signal }
+        )
+        .then(({ data }) => {
+          setIsLoading(false);
+          setWeather(data.current);
+          console.log(data);
+        })
+        .catch((err) => {
+          if (err instanceof CanceledError) return;
+          setErr(err.message);
+          setIsLoading(false);
+        });
 
     return () => controller.abort();
   }, [location]);
