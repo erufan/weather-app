@@ -2,11 +2,7 @@ import { CanceledError } from "axios";
 import { useContext, useEffect, useState } from "react";
 import LocationContext from "../context/LocationContext";
 import apiClientMeto from "../services/apiClientMeto";
-
-interface Current {
-  temperature_2m: number;
-  wind_speed_10m: number;
-}
+import Current from "../interfaces/Current";
 
 interface Data {
   current: Current;
