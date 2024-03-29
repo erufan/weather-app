@@ -1,6 +1,6 @@
 export default interface City {
   country: string;
-  country_id: number;
+  country_code: string;
   id: number;
   latitude: number;
   longitude: number;

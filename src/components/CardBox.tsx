@@ -6,6 +6,7 @@ import useGeographic from "../hooks/useGeographic";
 import InputContext from "../context/InputContext";
 import LocationContext from "../context/LocationContext";
 import Location from "../interfaces/Location";
+import CityInfo from "./CityInfo";
 
 const CardBox = () => {
   const [input, setInput] = useState<string | undefined>("");
@@ -19,6 +20,7 @@ const CardBox = () => {
           <Card backgroundColor="teal.400" padding=" 14.4px">
             <CardHeader>
               <MenuCity city={city} err={err} isLoading={isLoading} />
+              <CityInfo />
             </CardHeader>
             <CardBody>
               <MeteorologyInfo />

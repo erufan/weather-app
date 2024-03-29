@@ -7,6 +7,7 @@ import {
   MenuList,
   OrderedList,
   Spinner,
+  Box,
 } from "@chakra-ui/react";
 import SearchCity from "./SearchCity";
 import City from "../interfaces/City";
@@ -26,36 +27,41 @@ const MenuCity = ({ city, err, isLoading }: Props) => {
   const { setLocation } = useContext(LocationContext);
 
   return (
-    <Menu>
-      <MenuButton as={Button}>search your city</MenuButton>
-      <MenuList>
-        <SearchCity />
-        <MenuItem textAlign="center" fontSize={20}>
-          {isLoading && input ? (
-            <Spinner color="red.500" />
-          ) : (
-            <OrderedList>
-              {city?.map(
-                (c) =>
-                  c.population && (
-                    <ListItem
-                      key={c.id}
-                      onClick={() =>
-                        setLocation({
-                          longitude: c.longitude,
-                          latitude: c.latitude,
-                        })
-                      }
-                    >
-                      {c.name} {c.country} {c.population}
-                    </ListItem>
-                  )
-              )}
-            </OrderedList>
-          )}
-        </MenuItem>
-      </MenuList>
-    </Menu>
+    <Box>
+      <Menu>
+        <MenuButton as={Button}>search your city</MenuButton>
+        <MenuList>
+          <SearchCity />
+          <MenuItem textAlign="center" fontSize={20}>
+            {isLoading && input ? (
+              <Spinner color="red.500" />
+            ) : (
+              <OrderedList>
+                {city?.map(
+                  (c) =>
+                    c.population && (
+                      <ListItem
+                        key={c.id}
+                        onClick={() =>
+                          setLocation({
+                            city: c.name,
+                            country_code: c.country_code,
+                            country: c.country,
+                            longitude: c.longitude,
+                            latitude: c.latitude,
+                          })
+                        }
+                      >
+                        {c.name} {c.country} {c.population}
+                      </ListItem>
+                    )
+                )}
+              </OrderedList>
+            )}
+          </MenuItem>
+        </MenuList>
+      </Menu>
+    </Box>
   );
 };
 
