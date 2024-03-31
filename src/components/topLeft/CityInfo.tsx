@@ -1,6 +1,6 @@
 import { Wrap, WrapItem, Avatar, Heading, Box, Text } from "@chakra-ui/react";
 import { useContext } from "react";
-import LocationContext from "../context/LocationContext";
+import LocationContext from "../../context/LocationContext";
 
 const CityInfo = () => {
   const { location } = useContext(LocationContext);

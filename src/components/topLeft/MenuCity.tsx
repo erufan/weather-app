@@ -7,14 +7,12 @@ import {
   MenuList,
   OrderedList,
   Spinner,
-  VStack,
 } from "@chakra-ui/react";
 import SearchCity from "./SearchCity";
-import City from "../interfaces/City";
+import City from "../../interfaces/City";
 import { useContext } from "react";
-import InputContext from "../context/InputContext";
-import LocationContext from "../context/LocationContext";
-import CityInfo from "./CityInfo";
+import InputContext from "../../context/InputContext";
+import LocationContext from "../../context/LocationContext";
 
 interface Props {
   city: City[] | undefined;
@@ -28,7 +26,7 @@ const MenuCity = ({ city, err, isLoading }: Props) => {
   const { setLocation } = useContext(LocationContext);
 
   return (
-    <VStack>
+    <>
       <Menu>
         <MenuButton as={Button}>search your city</MenuButton>
         <MenuList>
@@ -62,8 +60,7 @@ const MenuCity = ({ city, err, isLoading }: Props) => {
           </MenuItem>
         </MenuList>
       </Menu>
-      <CityInfo />
-    </VStack>
+    </>
   );
 };
 

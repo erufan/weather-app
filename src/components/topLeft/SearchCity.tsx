@@ -1,7 +1,7 @@
 import { InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
 import { useContext } from "react";
 import { CiSearch } from "react-icons/ci";
-import InputContext from "../context/InputContext";
+import InputContext from "../../context/InputContext";
 
 const SearchCity = () => {
   const { input, setInput } = useContext(InputContext);
