@@ -1,11 +1,23 @@
-import { VStack, Image, Text } from "@chakra-ui/react";
-import logo from "../../assets/weatherIcons/0.png";
+import { VStack, Text } from "@chakra-ui/react";
+import useWeather from "../../hooks/useWeather";
+import weatherCode from "../../weatherCode";
+import WeatherCode from "../../interfaces/WeatherCode";
+import IconWeather from "./IconWeather";
 
 const TopRight = () => {
+  const { weather } = useWeather();
+
   return (
     <VStack gap="16px">
-      <Image src={logo} boxSize="100px" />
-      <Text>clear</Text>
+      <IconWeather />
+      {Object.keys(weatherCode).map(
+        (key) =>
+          parseInt(key) === weather?.weather_code && (
+            <Text key={key}>
+              {weatherCode[weather?.weather_code as keyof WeatherCode]}
+            </Text>
+          )
+      )}
     </VStack>
   );
 };

@@ -22,7 +22,7 @@ const useWeather = () => {
       longitude &&
       apiClientMeto
         .get<Data>(
-          `/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m`,
+          `/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m,weather_code`,
           { signal: controller.signal }
         )
         .then(({ data }) => {
