@@ -22,12 +22,13 @@ const useWeather = () => {
       longitude &&
       apiClientMeto
         .get<Data>(
-          `/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m,weather_code`,
+          `/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m,weather_code,precipitation_probability,relative_humidity_2m`,
           { signal: controller.signal }
         )
         .then(({ data }) => {
           setIsLoading(false);
           setWeather(data.current);
+          console.log(data);
         })
         .catch((err) => {
           if (err instanceof CanceledError) return;
