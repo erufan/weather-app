@@ -4,7 +4,7 @@ import CardBox from "./components/CardBox";
 function App() {
   return (
     <Box height="100vh" backgroundColor="teal.700">
-      <AbsoluteCenter>
+      <AbsoluteCenter width="400px">
         <CardBox />
       </AbsoluteCenter>
     </Box>

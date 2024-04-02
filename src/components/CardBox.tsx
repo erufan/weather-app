@@ -23,7 +23,7 @@ const CardBox = () => {
         <LocationContext.Provider value={{ location, setLocation }}>
           <Card backgroundColor="teal.400" padding=" 14.4px">
             <CardHeader>
-              <HStack spacing="16px">
+              <HStack justifyContent="space-between" gap="24px">
                 <Topleft />
                 <TopRight />
               </HStack>

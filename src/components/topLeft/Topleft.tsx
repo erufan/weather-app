@@ -10,7 +10,7 @@ const Topleft = () => {
   const { city, err, isLoading } = useGeographic(input);
 
   return (
-    <VStack>
+    <VStack flex="1" alignItems="stretch">
       <MenuCity city={city} err={err} isLoading={isLoading} />
       <CityInfo />
     </VStack>
