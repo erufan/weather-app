@@ -9,7 +9,13 @@ import Topleft from "./topLeft/Topleft";
 
 const CardBox = () => {
   const [input, setInput] = useState<string | undefined>("");
-  const [location, setLocation] = useState<Location>({} as Location);
+  const [location, setLocation] = useState<Location>({
+    city: "Tehran",
+    latitude: 35.6875,
+    longitude: 51.4375,
+    country: "Iran",
+    country_code: "IR",
+  });
 
   return (
     <>
