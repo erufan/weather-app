@@ -25,11 +25,28 @@ import RainShowersViolent from "../../assets/weatherIcons/82.svg?react";
 import SnowShowersSlight from "../../assets/weatherIcons/85.svg?react";
 import SnowShowersHeavy from "../../assets/weatherIcons/86.svg?react";
 import Thunderstorm from "../../assets/weatherIcons/95.svg?react";
+import sunAnim from "../../animations/sunAnim";
+import cloudAnim from "../../animations/cloudAnim";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 import useWeather from "../../hooks/useWeather";
 
 const IconWeather = () => {
-  const { weather } = useWeather();
+  const { weather, isLoading } = useWeather();
+  gsap.registerPlugin(useGSAP);
+
+  useGSAP(() => {
+    if (!isLoading) {
+      gsap.set(".cloud1", { x: "210%" });
+      gsap.set(".cloud2", { x: "210%" });
+      gsap.set(".cloud3", { x: "210%" });
+    }
+  }, [isLoading]);
+
+  sunAnim();
+  cloudAnim();
+
   return (
     <>
       {weather?.weather_code == 0 && <ClearSky />}

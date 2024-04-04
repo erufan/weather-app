@@ -3,11 +3,9 @@ import useWeather from "../../hooks/useWeather";
 import weatherCode from "../../weatherCode";
 import WeatherCode from "../../interfaces/WeatherCode";
 import IconWeather from "./IconWeather";
-import sunAnim from "../../animations/sunAnim";
 
 const TopRight = () => {
   const { weather } = useWeather();
-  sunAnim();
   return (
     <VStack gap="16px">
       <IconWeather />

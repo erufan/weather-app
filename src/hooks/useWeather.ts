@@ -26,7 +26,6 @@ const useWeather = () => {
       .then(({ data }) => {
         setIsLoading(false);
         setWeather(data.current);
-        console.log(data);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
