@@ -29,7 +29,6 @@ import sunAnim from "../../animations/sunAnim";
 import cloudAnim from "../../animations/cloudAnim";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-
 import useWeather from "../../hooks/useWeather";
 
 const IconWeather = () => {
@@ -38,14 +37,14 @@ const IconWeather = () => {
 
   useGSAP(() => {
     if (!isLoading) {
+      if (weather?.weather_code === 0) return sunAnim(weather);
       gsap.set(".cloud1", { x: "210%" });
       gsap.set(".cloud2", { x: "210%" });
       gsap.set(".cloud3", { x: "210%" });
+      cloudAnim(weather);
+      sunAnim(weather);
     }
   }, [isLoading]);
-
-  sunAnim();
-  cloudAnim();
 
   return (
     <>
