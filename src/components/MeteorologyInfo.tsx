@@ -1,5 +1,6 @@
 import { Badge, Text, VStack, HStack } from "@chakra-ui/react";
 import useWeather from "../hooks/useWeather";
+import IconBox from "./icon/IconBox";
 
 const MeteorologyInfo = () => {
   const { weather } = useWeather();
@@ -15,6 +16,9 @@ const MeteorologyInfo = () => {
           <Badge backgroundColor="#ffffff6c" padding={1}>
             {weather?.relative_humidity_2m}%
           </Badge>
+        </VStack>
+        <VStack textAlign="center" alignItems="stretch">
+          <IconBox />
         </VStack>
         <VStack textAlign="center" alignItems="stretch">
           <Text>wind speed</Text>

@@ -1,13 +1,13 @@
-import { VStack, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 import useWeather from "../../hooks/useWeather";
 import weatherCode from "../../weatherCode";
 import WeatherCode from "../../interfaces/WeatherCode";
 import IconWeather from "./IconWeather";
 
-const TopRight = () => {
+const IconBox = () => {
   const { weather } = useWeather();
   return (
-    <VStack gap="16px">
+    <>
       <IconWeather />
       {Object.keys(weatherCode).map(
         (key) =>
@@ -17,8 +17,8 @@ const TopRight = () => {
             </Text>
           )
       )}
-    </VStack>
+    </>
   );
 };
 
-export default TopRight;
+export default IconBox;

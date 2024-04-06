@@ -4,7 +4,6 @@ import { useState } from "react";
 import InputContext from "../context/InputContext";
 import LocationContext from "../context/LocationContext";
 import Location from "../interfaces/Location";
-import TopRight from "./topRight/TopRight";
 import Topleft from "./topLeft/Topleft";
 
 const CardBox = () => {
@@ -25,7 +24,6 @@ const CardBox = () => {
             <CardHeader>
               <HStack justifyContent="space-between" gap="24px">
                 <Topleft />
-                <TopRight />
               </HStack>
             </CardHeader>
             <CardBody>
