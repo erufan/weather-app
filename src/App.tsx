@@ -22,6 +22,11 @@ function App() {
           <HStack justifyContent="center">
             <CardBox type="main" />
           </HStack>
+          <HStack justifyContent="center" marginTop="2rem" gap={5}>
+            <CardBox type="minor" />
+            <CardBox type="minor" />
+            <CardBox type="minor" />
+          </HStack>
         </Box>
       </LocationContext.Provider>
     </InputContext.Provider>
