@@ -5,7 +5,7 @@ import useGeographic from "../../hooks/useGeographic";
 import { useContext } from "react";
 import InputContext from "../../context/InputContext";
 
-const Topleft = () => {
+const Top = () => {
   const { input } = useContext(InputContext);
   const { city, err, isLoading } = useGeographic(input);
 
@@ -17,4 +17,4 @@ const Topleft = () => {
   );
 };
 
-export default Topleft;
+export default Top;
