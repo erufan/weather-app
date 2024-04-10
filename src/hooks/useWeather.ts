@@ -13,12 +13,11 @@ const useWeather = () => {
   const [err, setErr] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const { location } = useContext(LocationContext);
-  const { latitude, longitude } = location;
 
   useEffect(() => {
     const { request, cancel } = weatherService(
-      latitude,
-      longitude
+      location.latitude,
+      location.longitude
     ).getData<Data>();
 
     setIsLoading(true);
