@@ -1,11 +1,7 @@
 import { CanceledError } from "axios";
 import { useEffect, useState } from "react";
 import City from "../interfaces/City";
-import apiClientGeo from "../services/apiClientGeo";
-
-interface Data {
-  results: City[] | undefined;
-}
+import cityService, { Data } from "../services/cityService";
 
 const useGeographic = (input: string | undefined) => {
   const [city, setCity] = useState<City[] | undefined>([]);
@@ -13,10 +9,10 @@ const useGeographic = (input: string | undefined) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const controller = new AbortController();
+    const { request, cancel } = cityService(input).getData<Data>();
+
     setIsLoading(true);
-    apiClientGeo
-      .get<Data>(`/search?name=${input}`, { signal: controller.signal })
+    request
       .then(({ data }) => {
         setIsLoading(false);
         setCity(data.results);
@@ -27,7 +23,7 @@ const useGeographic = (input: string | undefined) => {
         setIsLoading(false);
       });
 
-    return () => controller.abort();
+    return () => cancel();
   }, [input]);
   return { city, err, isLoading };
 };

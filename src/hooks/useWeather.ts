@@ -1,8 +1,8 @@
 import { CanceledError } from "axios";
 import { useContext, useEffect, useState } from "react";
 import LocationContext from "../context/LocationContext";
-import apiClientMeto from "../services/apiClientMeto";
 import Current from "../interfaces/Current";
+import weatherService from "../services/weatherService";
 
 interface Data {
   current: Current;
@@ -16,13 +16,13 @@ const useWeather = () => {
   const { latitude, longitude } = location;
 
   useEffect(() => {
-    const controller = new AbortController();
+    const { request, cancel } = weatherService(
+      latitude,
+      longitude
+    ).getData<Data>();
+
     setIsLoading(true);
-    apiClientMeto
-      .get<Data>(
-        `/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,wind_speed_10m,weather_code,precipitation_probability,relative_humidity_2m`,
-        { signal: controller.signal }
-      )
+    request
       .then(({ data }) => {
         setIsLoading(false);
         setWeather(data.current);
@@ -33,7 +33,7 @@ const useWeather = () => {
         setIsLoading(false);
       });
 
-    return () => controller.abort();
+    return () => cancel();
   }, [location]);
   return { weather, err, isLoading };
 };
