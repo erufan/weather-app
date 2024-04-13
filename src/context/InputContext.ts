@@ -5,6 +5,8 @@ interface InputContexts {
   setInput: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-const InputContext = createContext<InputContexts>({} as InputContexts);
+const InputContext = createContext<InputContexts>({
+  input: "new york",
+} as InputContexts);
 
 export default InputContext;

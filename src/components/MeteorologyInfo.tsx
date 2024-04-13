@@ -1,9 +1,10 @@
 import { Badge, Text, VStack, HStack } from "@chakra-ui/react";
-import useWeather from "../hooks/useWeather";
 import IconBox from "./icon/IconBox";
+import { useContext } from "react";
+import WeatherContext from "../context/WeatherContext";
 
 const MeteorologyInfo = () => {
-  const { weather } = useWeather();
+  const { weather } = useContext(WeatherContext);
   return (
     <>
       <HStack justifyContent="space-between">

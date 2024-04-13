@@ -9,18 +9,13 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import SearchCity from "./SearchCity";
-import City from "../../interfaces/City";
 import { useContext } from "react";
 import InputContext from "../../context/InputContext";
 import LocationContext from "../../context/LocationContext";
+import CityContext from "../../context/CityContext";
 
-interface Props {
-  city: City[] | undefined;
-  err: string;
-  isLoading: boolean;
-}
-
-const MenuCity = ({ city, err, isLoading }: Props) => {
+const MenuCity = () => {
+  const { city, err, isLoading } = useContext(CityContext);
   if (err) return err;
   const { input } = useContext(InputContext);
   const { setLocation } = useContext(LocationContext);

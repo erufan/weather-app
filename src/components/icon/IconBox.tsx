@@ -1,11 +1,12 @@
 import { Text } from "@chakra-ui/react";
-import useWeather from "../../hooks/useWeather";
 import weatherCode from "../../weatherCode";
 import WeatherCode from "../../interfaces/WeatherCode";
 import IconWeather from "./IconWeather";
+import { useContext } from "react";
+import WeatherContext from "../../context/WeatherContext";
 
 const IconBox = () => {
-  const { weather } = useWeather();
+  const { weather } = useContext(WeatherContext);
   return (
     <>
       <IconWeather />

@@ -1,14 +1,12 @@
 import { CanceledError } from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import City from "../interfaces/City";
 import cityService, { Data } from "../services/cityService";
-import InputContext from "../context/InputContext";
 
-const useGeographic = () => {
+const useGeographic = (input: string | undefined) => {
   const [city, setCity] = useState<City[] | undefined>([]);
   const [err, setErr] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const { input } = useContext(InputContext);
 
   useEffect(() => {
     const { request, cancel } = cityService(input).getData<Data>();

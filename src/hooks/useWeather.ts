@@ -1,18 +1,17 @@
 import { CanceledError } from "axios";
-import { useContext, useEffect, useState } from "react";
-import LocationContext from "../context/LocationContext";
+import { useEffect, useState } from "react";
 import Current from "../interfaces/Current";
 import weatherService from "../services/weatherService";
+import Location from "../interfaces/Location";
 
 interface Data {
   current: Current;
 }
 
-const useWeather = () => {
+const useWeather = (location: Location) => {
   const [weather, setWeather] = useState<Current>();
   const [err, setErr] = useState("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const { location } = useContext(LocationContext);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const { request, cancel } = weatherService(
@@ -20,21 +19,21 @@ const useWeather = () => {
       location.longitude
     ).getData<Data>();
 
-    setIsLoading(true);
+    setLoading(true);
     request
       .then(({ data }) => {
-        setIsLoading(false);
+        setLoading(false);
         setWeather(data.current);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setErr(err.message);
-        setIsLoading(false);
+        setLoading(false);
       });
 
     return () => cancel();
   }, [location]);
-  return { weather, err, isLoading };
+  return { weather, err, loading };
 };
 
 export default useWeather;
