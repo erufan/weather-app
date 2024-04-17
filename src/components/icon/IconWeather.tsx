@@ -25,24 +25,14 @@ import RainShowersViolent from "../../assets/weatherIcons/82.svg?react";
 import SnowShowersSlight from "../../assets/weatherIcons/85.svg?react";
 import SnowShowersHeavy from "../../assets/weatherIcons/86.svg?react";
 import Thunderstorm from "../../assets/weatherIcons/95.svg?react";
-import sunAnim from "../../animations/sunAnim";
-import cloudAnim from "../../animations/cloudAnim";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useContext } from "react";
 import WeatherContext from "../../context/WeatherContext";
 
 const IconWeather = () => {
-  const { weather, loading } = useContext(WeatherContext);
+  const { weather } = useContext(WeatherContext);
   gsap.registerPlugin(useGSAP);
-
-  useGSAP(() => {
-    if (!loading) {
-      if (weather?.weather_code === 0) return sunAnim(weather);
-      cloudAnim(weather);
-      sunAnim(weather);
-    }
-  }, [loading]);
 
   return (
     <>
