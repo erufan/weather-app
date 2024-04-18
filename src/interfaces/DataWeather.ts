@@ -3,5 +3,5 @@ import Daily from "./Daily";
 
 export default interface DataWeather {
   current: Current;
-  Daily: Daily;
+  daily: Daily;
 }

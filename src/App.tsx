@@ -31,9 +31,9 @@ function App() {
                 <CardBox type="main" />
               </HStack>
               <HStack justifyContent="center" marginTop="2rem" gap={5}>
-                <CardBox type="minor" />
-                <CardBox type="minor" />
-                <CardBox type="minor" />
+                <CardBox type="minor" index={0} />
+                <CardBox type="minor" index={1} />
+                <CardBox type="minor" index={2} />
               </HStack>
             </Box>
           </WeatherContext.Provider>
