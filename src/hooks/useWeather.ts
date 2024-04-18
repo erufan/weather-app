@@ -3,13 +3,15 @@ import { useEffect, useState } from "react";
 import Current from "../interfaces/Current";
 import weatherService from "../services/weatherService";
 import Location from "../interfaces/Location";
+import Daily from "../interfaces/Daily";
 
 interface Data {
   current: Current;
+  Daily: Daily;
 }
 
 const useWeather = (location: Location) => {
-  const [weather, setWeather] = useState<Current>();
+  const [weather, setWeather] = useState<Data>();
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -23,7 +25,7 @@ const useWeather = (location: Location) => {
     request
       .then(({ data }) => {
         setLoading(false);
-        setWeather(data.current);
+        setWeather(data);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
