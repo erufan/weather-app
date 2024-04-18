@@ -25,54 +25,52 @@ import RainShowersViolent from "../../assets/weatherIcons/82.svg?react";
 import SnowShowersSlight from "../../assets/weatherIcons/85.svg?react";
 import SnowShowersHeavy from "../../assets/weatherIcons/86.svg?react";
 import Thunderstorm from "../../assets/weatherIcons/95.svg?react";
-import sunAnim from "../../animations/sunAnim";
-import cloudAnim from "../../animations/cloudAnim";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useContext } from "react";
 import WeatherContext from "../../context/WeatherContext";
+interface Props {
+  type: "main" | "minor";
+  index?: number;
+}
 
-const IconWeather = () => {
-  const { weather, loading } = useContext(WeatherContext);
+const IconWeather = ({ type, index }: Props) => {
+  const { weather } = useContext(WeatherContext);
   gsap.registerPlugin(useGSAP);
+  let weatherCode: number | undefined;
 
-  useGSAP(() => {
-    if (!loading) {
-      if (weather?.weather_code === 0) return sunAnim(weather);
-      cloudAnim(weather);
-      sunAnim(weather);
-    }
-  }, [loading]);
+  if (type === "main") weatherCode = weather?.current?.weather_code;
+  if (type === "minor") weatherCode = weather?.daily.weather_code[index!];
 
   return (
     <>
-      {weather?.weather_code == 0 && <ClearSky />}
-      {weather?.weather_code == 1 && <MainlyClear />}
-      {weather?.weather_code == 2 && <PartlyCloudy />}
-      {weather?.weather_code == 3 && <Overcast />}
-      {(weather?.weather_code == 45 || weather?.weather_code == 48) && <Fog />}
-      {weather?.weather_code == 51 && <DrizzleLight />}
-      {weather?.weather_code == 53 && <DrizzleModerate />}
-      {weather?.weather_code == 55 && <DrizzDense />}
-      {weather?.weather_code == 56 && <FreezingDrizzleLight />}
-      {weather?.weather_code == 57 && <FreezingDrizzleDense />}
-      {weather?.weather_code == 61 && <RainSlight />}
-      {weather?.weather_code == 63 && <RainModerate />}
-      {weather?.weather_code == 65 && <RainHeavy />}
-      {weather?.weather_code == 66 && <FreezingRainLight />}
-      {weather?.weather_code == 67 && <FreezingRainHeavy />}
-      {weather?.weather_code == 71 && <SnowFallSlight />}
-      {weather?.weather_code == 73 && <SnowFallModerate />}
-      {weather?.weather_code == 75 && <SnowFallHeavy />}
-      {weather?.weather_code == 77 && <SnowGrains />}
-      {weather?.weather_code == 80 && <RainShowersSlight />}
-      {weather?.weather_code == 81 && <RainShowersModerate />}
-      {weather?.weather_code == 82 && <RainShowersViolent />}
-      {weather?.weather_code == 85 && <SnowShowersSlight />}
-      {weather?.weather_code == 86 && <SnowShowersHeavy />}
-      {(weather?.weather_code == 95 ||
-        weather?.weather_code == 96 ||
-        weather?.weather_code == 99) && <Thunderstorm />}
+      {weatherCode == 0 && <ClearSky />}
+      {weatherCode == 1 && <MainlyClear />}
+      {weatherCode == 2 && <PartlyCloudy />}
+      {weatherCode == 3 && <Overcast />}
+      {(weatherCode == 45 || weatherCode == 48) && <Fog />}
+      {weatherCode == 51 && <DrizzleLight />}
+      {weatherCode == 53 && <DrizzleModerate />}
+      {weatherCode == 55 && <DrizzDense />}
+      {weatherCode == 56 && <FreezingDrizzleLight />}
+      {weatherCode == 57 && <FreezingDrizzleDense />}
+      {weatherCode == 61 && <RainSlight />}
+      {weatherCode == 63 && <RainModerate />}
+      {weatherCode == 65 && <RainHeavy />}
+      {weatherCode == 66 && <FreezingRainLight />}
+      {weatherCode == 67 && <FreezingRainHeavy />}
+      {weatherCode == 71 && <SnowFallSlight />}
+      {weatherCode == 73 && <SnowFallModerate />}
+      {weatherCode == 75 && <SnowFallHeavy />}
+      {weatherCode == 77 && <SnowGrains />}
+      {weatherCode == 80 && <RainShowersSlight />}
+      {weatherCode == 81 && <RainShowersModerate />}
+      {weatherCode == 82 && <RainShowersViolent />}
+      {weatherCode == 85 && <SnowShowersSlight />}
+      {weatherCode == 86 && <SnowShowersHeavy />}
+      {(weatherCode == 95 || weatherCode == 96 || weatherCode == 99) && (
+        <Thunderstorm />
+      )}
     </>
   );
 };

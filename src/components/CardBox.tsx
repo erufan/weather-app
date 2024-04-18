@@ -2,7 +2,12 @@ import { Card, CardHeader, CardBody } from "@chakra-ui/react";
 import MeteorologyInfo from "./MeteorologyInfo";
 import Top from "./aboutCity/Top";
 
-const CardBox = ({ type }: { type: "main" | "minor" }) => {
+interface Props {
+  type: "main" | "minor";
+  index?: number;
+}
+
+const CardBox = ({ type, index }: Props) => {
   return (
     <>
       <Card backgroundColor="teal.400" padding=" 14.4px" width="400px">
@@ -12,7 +17,7 @@ const CardBox = ({ type }: { type: "main" | "minor" }) => {
           </CardHeader>
         )}
         <CardBody>
-          <MeteorologyInfo />
+          <MeteorologyInfo type={type} index={index} />
         </CardBody>
       </Card>
     </>

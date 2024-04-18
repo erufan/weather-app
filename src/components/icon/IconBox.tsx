@@ -5,16 +5,21 @@ import IconWeather from "./IconWeather";
 import { useContext } from "react";
 import WeatherContext from "../../context/WeatherContext";
 
-const IconBox = () => {
+interface Props {
+  type: "main" | "minor";
+  index?: number;
+}
+
+const IconBox = ({ type, index }: Props) => {
   const { weather } = useContext(WeatherContext);
   return (
     <>
-      <IconWeather />
+      <IconWeather type={type} index={index} />
       {Object.keys(weatherCode).map(
         (key) =>
-          parseInt(key) === weather?.weather_code && (
+          parseInt(key) === weather?.current.weather_code && (
             <Text key={key}>
-              {weatherCode[weather?.weather_code as keyof WeatherCode]}
+              {weatherCode[weather?.current.weather_code as keyof WeatherCode]}
             </Text>
           )
       )}

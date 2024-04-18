@@ -1,15 +1,11 @@
 import { CanceledError } from "axios";
 import { useEffect, useState } from "react";
-import Current from "../interfaces/Current";
 import weatherService from "../services/weatherService";
 import Location from "../interfaces/Location";
-
-interface Data {
-  current: Current;
-}
+import DataWeather from "../interfaces/DataWeather";
 
 const useWeather = (location: Location) => {
-  const [weather, setWeather] = useState<Current>();
+  const [weather, setWeather] = useState<DataWeather>();
   const [err, setErr] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -17,13 +13,14 @@ const useWeather = (location: Location) => {
     const { request, cancel } = weatherService(
       location.latitude,
       location.longitude
-    ).getData<Data>();
+    ).getData<DataWeather>();
 
     setLoading(true);
     request
       .then(({ data }) => {
         setLoading(false);
-        setWeather(data.current);
+        setWeather(data);
+        console.log(data);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
