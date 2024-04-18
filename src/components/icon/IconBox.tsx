@@ -5,11 +5,16 @@ import IconWeather from "./IconWeather";
 import { useContext } from "react";
 import WeatherContext from "../../context/WeatherContext";
 
-const IconBox = () => {
+interface Props {
+  type: "main" | "minor";
+  index?: number;
+}
+
+const IconBox = ({ type, index }: Props) => {
   const { weather } = useContext(WeatherContext);
   return (
     <>
-      <IconWeather />
+      <IconWeather type={type} index={index} />
       {Object.keys(weatherCode).map(
         (key) =>
           parseInt(key) === weather?.current.weather_code && (

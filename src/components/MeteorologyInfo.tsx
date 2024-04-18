@@ -33,7 +33,7 @@ const MeteorologyInfo = ({ type, index }: Props) => {
             </Badge>
           </VStack>
           <VStack textAlign="center" alignItems="stretch">
-            <IconBox />
+            <IconBox type={type} index={index} />
           </VStack>
           <VStack textAlign="center" alignItems="stretch">
             <Text>wind speed</Text>

@@ -29,41 +29,48 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { useContext } from "react";
 import WeatherContext from "../../context/WeatherContext";
+interface Props {
+  type: "main" | "minor";
+  index?: number;
+}
 
-const IconWeather = () => {
+const IconWeather = ({ type, index }: Props) => {
   const { weather } = useContext(WeatherContext);
   gsap.registerPlugin(useGSAP);
+  let weatherCode: number | undefined;
+
+  if (type === "main") weatherCode = weather?.current?.weather_code;
+  if (type === "minor") weatherCode = weather?.daily.weather_code[index!];
 
   return (
     <>
-      {weather?.current?.weather_code == 0 && <ClearSky />}
-      {weather?.current?.weather_code == 1 && <MainlyClear />}
-      {weather?.current?.weather_code == 2 && <PartlyCloudy />}
-      {weather?.current?.weather_code == 3 && <Overcast />}
-      {(weather?.current?.weather_code == 45 ||
-        weather?.current?.weather_code == 48) && <Fog />}
-      {weather?.current?.weather_code == 51 && <DrizzleLight />}
-      {weather?.current?.weather_code == 53 && <DrizzleModerate />}
-      {weather?.current?.weather_code == 55 && <DrizzDense />}
-      {weather?.current?.weather_code == 56 && <FreezingDrizzleLight />}
-      {weather?.current?.weather_code == 57 && <FreezingDrizzleDense />}
-      {weather?.current?.weather_code == 61 && <RainSlight />}
-      {weather?.current?.weather_code == 63 && <RainModerate />}
-      {weather?.current?.weather_code == 65 && <RainHeavy />}
-      {weather?.current?.weather_code == 66 && <FreezingRainLight />}
-      {weather?.current?.weather_code == 67 && <FreezingRainHeavy />}
-      {weather?.current?.weather_code == 71 && <SnowFallSlight />}
-      {weather?.current?.weather_code == 73 && <SnowFallModerate />}
-      {weather?.current?.weather_code == 75 && <SnowFallHeavy />}
-      {weather?.current?.weather_code == 77 && <SnowGrains />}
-      {weather?.current?.weather_code == 80 && <RainShowersSlight />}
-      {weather?.current?.weather_code == 81 && <RainShowersModerate />}
-      {weather?.current?.weather_code == 82 && <RainShowersViolent />}
-      {weather?.current?.weather_code == 85 && <SnowShowersSlight />}
-      {weather?.current?.weather_code == 86 && <SnowShowersHeavy />}
-      {(weather?.current?.weather_code == 95 ||
-        weather?.current?.weather_code == 96 ||
-        weather?.current?.weather_code == 99) && <Thunderstorm />}
+      {weatherCode == 0 && <ClearSky />}
+      {weatherCode == 1 && <MainlyClear />}
+      {weatherCode == 2 && <PartlyCloudy />}
+      {weatherCode == 3 && <Overcast />}
+      {(weatherCode == 45 || weatherCode == 48) && <Fog />}
+      {weatherCode == 51 && <DrizzleLight />}
+      {weatherCode == 53 && <DrizzleModerate />}
+      {weatherCode == 55 && <DrizzDense />}
+      {weatherCode == 56 && <FreezingDrizzleLight />}
+      {weatherCode == 57 && <FreezingDrizzleDense />}
+      {weatherCode == 61 && <RainSlight />}
+      {weatherCode == 63 && <RainModerate />}
+      {weatherCode == 65 && <RainHeavy />}
+      {weatherCode == 66 && <FreezingRainLight />}
+      {weatherCode == 67 && <FreezingRainHeavy />}
+      {weatherCode == 71 && <SnowFallSlight />}
+      {weatherCode == 73 && <SnowFallModerate />}
+      {weatherCode == 75 && <SnowFallHeavy />}
+      {weatherCode == 77 && <SnowGrains />}
+      {weatherCode == 80 && <RainShowersSlight />}
+      {weatherCode == 81 && <RainShowersModerate />}
+      {weatherCode == 82 && <RainShowersViolent />}
+      {weatherCode == 85 && <SnowShowersSlight />}
+      {weatherCode == 86 && <SnowShowersHeavy />}
+      {(weatherCode == 95 || weatherCode == 96 || weatherCode == 99) && (
+        <Thunderstorm />
+      )}
     </>
   );
 };
