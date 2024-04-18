@@ -12,9 +12,9 @@ const IconBox = () => {
       <IconWeather />
       {Object.keys(weatherCode).map(
         (key) =>
-          parseInt(key) === weather?.weather_code && (
+          parseInt(key) === weather?.current.weather_code && (
             <Text key={key}>
-              {weatherCode[weather?.weather_code as keyof WeatherCode]}
+              {weatherCode[weather?.current.weather_code as keyof WeatherCode]}
             </Text>
           )
       )}

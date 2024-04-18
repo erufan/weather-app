@@ -36,33 +36,34 @@ const IconWeather = () => {
 
   return (
     <>
-      {weather?.weather_code == 0 && <ClearSky />}
-      {weather?.weather_code == 1 && <MainlyClear />}
-      {weather?.weather_code == 2 && <PartlyCloudy />}
-      {weather?.weather_code == 3 && <Overcast />}
-      {(weather?.weather_code == 45 || weather?.weather_code == 48) && <Fog />}
-      {weather?.weather_code == 51 && <DrizzleLight />}
-      {weather?.weather_code == 53 && <DrizzleModerate />}
-      {weather?.weather_code == 55 && <DrizzDense />}
-      {weather?.weather_code == 56 && <FreezingDrizzleLight />}
-      {weather?.weather_code == 57 && <FreezingDrizzleDense />}
-      {weather?.weather_code == 61 && <RainSlight />}
-      {weather?.weather_code == 63 && <RainModerate />}
-      {weather?.weather_code == 65 && <RainHeavy />}
-      {weather?.weather_code == 66 && <FreezingRainLight />}
-      {weather?.weather_code == 67 && <FreezingRainHeavy />}
-      {weather?.weather_code == 71 && <SnowFallSlight />}
-      {weather?.weather_code == 73 && <SnowFallModerate />}
-      {weather?.weather_code == 75 && <SnowFallHeavy />}
-      {weather?.weather_code == 77 && <SnowGrains />}
-      {weather?.weather_code == 80 && <RainShowersSlight />}
-      {weather?.weather_code == 81 && <RainShowersModerate />}
-      {weather?.weather_code == 82 && <RainShowersViolent />}
-      {weather?.weather_code == 85 && <SnowShowersSlight />}
-      {weather?.weather_code == 86 && <SnowShowersHeavy />}
-      {(weather?.weather_code == 95 ||
-        weather?.weather_code == 96 ||
-        weather?.weather_code == 99) && <Thunderstorm />}
+      {weather?.current?.weather_code == 0 && <ClearSky />}
+      {weather?.current?.weather_code == 1 && <MainlyClear />}
+      {weather?.current?.weather_code == 2 && <PartlyCloudy />}
+      {weather?.current?.weather_code == 3 && <Overcast />}
+      {(weather?.current?.weather_code == 45 ||
+        weather?.current?.weather_code == 48) && <Fog />}
+      {weather?.current?.weather_code == 51 && <DrizzleLight />}
+      {weather?.current?.weather_code == 53 && <DrizzleModerate />}
+      {weather?.current?.weather_code == 55 && <DrizzDense />}
+      {weather?.current?.weather_code == 56 && <FreezingDrizzleLight />}
+      {weather?.current?.weather_code == 57 && <FreezingDrizzleDense />}
+      {weather?.current?.weather_code == 61 && <RainSlight />}
+      {weather?.current?.weather_code == 63 && <RainModerate />}
+      {weather?.current?.weather_code == 65 && <RainHeavy />}
+      {weather?.current?.weather_code == 66 && <FreezingRainLight />}
+      {weather?.current?.weather_code == 67 && <FreezingRainHeavy />}
+      {weather?.current?.weather_code == 71 && <SnowFallSlight />}
+      {weather?.current?.weather_code == 73 && <SnowFallModerate />}
+      {weather?.current?.weather_code == 75 && <SnowFallHeavy />}
+      {weather?.current?.weather_code == 77 && <SnowGrains />}
+      {weather?.current?.weather_code == 80 && <RainShowersSlight />}
+      {weather?.current?.weather_code == 81 && <RainShowersModerate />}
+      {weather?.current?.weather_code == 82 && <RainShowersViolent />}
+      {weather?.current?.weather_code == 85 && <SnowShowersSlight />}
+      {weather?.current?.weather_code == 86 && <SnowShowersHeavy />}
+      {(weather?.current?.weather_code == 95 ||
+        weather?.current?.weather_code == 96 ||
+        weather?.current?.weather_code == 99) && <Thunderstorm />}
     </>
   );
 };

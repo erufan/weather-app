@@ -1,8 +1,8 @@
 import { createContext } from "react";
-import Current from "../interfaces/Current";
+import DataWeather from "../interfaces/DataWeather";
 
 interface WeatherContexts {
-  weather: Current | undefined;
+  weather: DataWeather | undefined;
   loading: boolean;
 }
 
