@@ -12,6 +12,11 @@ const MeteorologyInfo = ({ type, index }: Props) => {
   const { weather } = useContext(WeatherContext);
   if (weather) {
     const { current, daily } = weather;
+
+    let weatherConditions: number | undefined;
+    if (type === "main") weatherConditions = current.weather_code;
+    if (type === "minor") weatherConditions = daily.weather_code[index!];
+
     return (
       <>
         <HStack justifyContent="space-between">
@@ -33,7 +38,7 @@ const MeteorologyInfo = ({ type, index }: Props) => {
             </Badge>
           </VStack>
           <VStack textAlign="center" alignItems="stretch">
-            <IconBox type={type} index={index} />
+            <IconBox weatherConditions={weatherConditions} />
           </VStack>
           <VStack textAlign="center" alignItems="stretch">
             <Text>wind speed</Text>

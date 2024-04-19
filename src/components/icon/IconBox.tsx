@@ -2,24 +2,20 @@ import { Text } from "@chakra-ui/react";
 import weatherCode from "../../weatherCode";
 import WeatherCode from "../../interfaces/WeatherCode";
 import IconWeather from "./IconWeather";
-import { useContext } from "react";
-import WeatherContext from "../../context/WeatherContext";
 
 interface Props {
-  type: "main" | "minor";
-  index?: number;
+  weatherConditions: number | undefined;
 }
 
-const IconBox = ({ type, index }: Props) => {
-  const { weather } = useContext(WeatherContext);
+const IconBox = ({ weatherConditions }: Props) => {
   return (
     <>
-      <IconWeather type={type} index={index} />
+      <IconWeather weatherConditions={weatherConditions} />
       {Object.keys(weatherCode).map(
         (key) =>
-          parseInt(key) === weather?.current.weather_code && (
+          parseInt(key) === weatherConditions && (
             <Text key={key}>
-              {weatherCode[weather?.current.weather_code as keyof WeatherCode]}
+              {weatherCode[weatherConditions as keyof WeatherCode]}
             </Text>
           )
       )}
