@@ -1,12 +1,12 @@
 import {
   Button,
-  ListItem,
   Menu,
   MenuButton,
-  MenuItem,
   MenuList,
-  OrderedList,
   Spinner,
+  Box,
+  Text,
+  VStack,
 } from "@chakra-ui/react";
 import SearchCity from "./SearchCity";
 import { useContext } from "react";
@@ -22,37 +22,49 @@ const MenuCity = () => {
 
   return (
     <>
-      <Menu>
+      <Menu lazyBehavior="unmount" isLazy={true} matchWidth={true}>
         <MenuButton as={Button}>search your city</MenuButton>
         <MenuList>
-          <SearchCity />
-          <MenuItem textAlign="center" fontSize={20}>
-            {isLoading && input ? (
-              <Spinner color="red.500" />
-            ) : (
-              <OrderedList>
-                {city?.map(
-                  (c) =>
-                    c.population && (
-                      <ListItem
-                        key={c.id}
-                        onClick={() =>
-                          setLocation({
-                            city: c.name,
-                            country_code: c.country_code,
-                            country: c.country,
-                            longitude: c.longitude,
-                            latitude: c.latitude,
-                          })
-                        }
-                      >
-                        {c.name} {c.country} {c.population}
-                      </ListItem>
-                    )
-                )}
-              </OrderedList>
-            )}
-          </MenuItem>
+          <Box padding={4}>
+            <SearchCity />
+          </Box>
+          {isLoading && input ? (
+            <VStack>
+              <Spinner
+                textAlign="center"
+                emptyColor="teal.100"
+                color="teal.400"
+                size="md"
+              />
+            </VStack>
+          ) : (
+            <>
+              {city?.map(
+                (c) =>
+                  c.population && (
+                    <Text
+                      padding={2}
+                      cursor="pointer"
+                      _hover={{
+                        background: "gray.100",
+                      }}
+                      key={c.id}
+                      onClick={() =>
+                        setLocation({
+                          city: c.name,
+                          country_code: c.country_code,
+                          country: c.country,
+                          longitude: c.longitude,
+                          latitude: c.latitude,
+                        })
+                      }
+                    >
+                      {c.name} {c.country} {c.population}
+                    </Text>
+                  )
+              )}
+            </>
+          )}
         </MenuList>
       </Menu>
     </>

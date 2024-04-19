@@ -10,7 +10,7 @@ import useWeather from "./hooks/useWeather";
 import WeatherContext from "./context/WeatherContext";
 
 function App() {
-  const [input, setInput] = useState<string | undefined>("");
+  const [input, setInput] = useState<string>("");
   const [location, setLocation] = useState<Location>({
     city: "Tehran",
     latitude: 35.6875,

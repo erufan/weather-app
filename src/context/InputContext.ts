@@ -1,12 +1,12 @@
 import { createContext } from "react";
 
 interface InputContexts {
-  input: string | undefined;
-  setInput: React.Dispatch<React.SetStateAction<string | undefined>>;
+  input: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const InputContext = createContext<InputContexts>({
-  input: "new york",
+  input: "",
 } as InputContexts);
 
 export default InputContext;
