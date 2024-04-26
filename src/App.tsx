@@ -1,4 +1,4 @@
-import { Box, HStack } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import CardBox from "./components/CardBox";
 import InputContext from "./context/InputContext";
 import LocationContext from "./context/LocationContext";
@@ -26,15 +26,21 @@ function App() {
       <LocationContext.Provider value={{ location, setLocation }}>
         <CityContext.Provider value={{ city, err, isLoading }}>
           <WeatherContext.Provider value={{ weather, loading }}>
-            <Box backgroundColor="teal.700" height="100vh">
-              <HStack justifyContent="center">
+            <Box>
+              <Stack alignItems="center">
                 <CardBox type="main" />
-              </HStack>
-              <HStack justifyContent="center" marginTop="2rem" gap={5}>
+              </Stack>
+              <Stack
+                alignItems="center"
+                justifyContent="center"
+                marginTop="2rem"
+                gap={5}
+                direction={{ base: "column", xl: "row" }}
+              >
                 <CardBox type="minor" index={0} />
                 <CardBox type="minor" index={1} />
                 <CardBox type="minor" index={2} />
-              </HStack>
+              </Stack>
             </Box>
           </WeatherContext.Provider>
         </CityContext.Provider>

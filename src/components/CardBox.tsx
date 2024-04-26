@@ -13,7 +13,7 @@ const CardBox = ({ type, index }: Props) => {
       <Card
         backgroundColor="teal.400"
         padding=" 14.4px"
-        width="400px"
+        width={{ md: "400px" }}
         marginTop={1}
       >
         {type === "main" && (
