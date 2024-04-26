@@ -10,7 +10,12 @@ interface Props {
 const CardBox = ({ type, index }: Props) => {
   return (
     <>
-      <Card backgroundColor="teal.400" padding=" 14.4px" width="400px">
+      <Card
+        backgroundColor="teal.400"
+        padding=" 14.4px"
+        width="400px"
+        marginTop={1}
+      >
         {type === "main" && (
           <CardHeader>
             <Top />

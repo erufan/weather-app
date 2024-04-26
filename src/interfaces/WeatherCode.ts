@@ -25,8 +25,8 @@ interface WeatherCode {
   85: "slight Snow showers";
   86: "heavy Snow showers";
   95: "Thunderstorm";
-  96: "Thunderstorm with hail";
-  99: "Thunderstorm with hail";
+  96: "Thunderstorm";
+  99: "Thunderstorm";
 }
 
 export default WeatherCode;
