@@ -9,8 +9,8 @@ const Precipitation = ({ children }: { children: React.ReactNode }) => {
   useGSAP(() => {
     gsap.fromTo(
       ".precipitation",
-      { translate: "0 0", duration: 3 },
-      { translate: "-150% 150%", duration: 3, repeat: -1 }
+      { translate: "0 0" },
+      { translate: "-100% 100%", duration: 4, repeat: -1 }
     );
   }, [loading]);
 

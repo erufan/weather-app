@@ -13,7 +13,7 @@ const CloudAnim = ({ children }: { children: React.ReactNode }) => {
       })
       .fromTo(".cloud1", { translate: "210%" }, { translate: "-150%" })
       .fromTo(".cloud2", { translate: "210%" }, { translate: "-150%" }, 2.5)
-      .fromTo(".cloud3", { translate: "210%" }, { translate: "-200%" }, 3);
+      .fromTo(".cloud3", { translate: "210%" }, { translate: "-100%" }, 3);
   }, [loading]);
 
   return <>{children}</>;
