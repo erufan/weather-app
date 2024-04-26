@@ -25,54 +25,188 @@ import RainShowersViolent from "../../assets/weatherIcons/82.svg?react";
 import SnowShowersSlight from "../../assets/weatherIcons/85.svg?react";
 import SnowShowersHeavy from "../../assets/weatherIcons/86.svg?react";
 import Thunderstorm from "../../assets/weatherIcons/95.svg?react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { useContext } from "react";
-import WeatherContext from "../../context/WeatherContext";
-import cloudAnim from "../../animations/cloudAnim";
-import sunAnim from "../../animations/sunAnim";
+import CloudAnim from "../../animations/CloudAnim";
+import SunAnim from "../../animations/SunAnim";
+import Precipitation from "../../animations/Precipitation";
 interface Props {
   weatherConditions: number | undefined;
 }
 
 const IconWeather = ({ weatherConditions }: Props) => {
-  const { loading } = useContext(WeatherContext);
-  gsap.registerPlugin(useGSAP);
-
-  useGSAP(() => {
-    if (!loading) {
-      if (weatherConditions === 0) return sunAnim(weatherConditions);
-      cloudAnim(weatherConditions);
-      sunAnim(weatherConditions);
-    }
-  }, [loading]);
-
   return (
     <>
-      {weatherConditions == 0 && <ClearSky />}
-      {weatherConditions == 1 && <MainlyClear />}
-      {weatherConditions == 2 && <PartlyCloudy />}
-      {weatherConditions == 3 && <Overcast />}
-      {(weatherConditions == 45 || weatherConditions == 48) && <Fog />}
-      {weatherConditions == 51 && <DrizzleLight />}
-      {weatherConditions == 53 && <DrizzleModerate />}
-      {weatherConditions == 55 && <DrizzDense />}
-      {weatherConditions == 56 && <FreezingDrizzleLight />}
-      {weatherConditions == 57 && <FreezingDrizzleDense />}
-      {weatherConditions == 61 && <RainSlight />}
-      {weatherConditions == 63 && <RainModerate />}
-      {weatherConditions == 65 && <RainHeavy />}
-      {weatherConditions == 66 && <FreezingRainLight />}
-      {weatherConditions == 67 && <FreezingRainHeavy />}
-      {weatherConditions == 71 && <SnowFallSlight />}
-      {weatherConditions == 73 && <SnowFallModerate />}
-      {weatherConditions == 75 && <SnowFallHeavy />}
-      {weatherConditions == 77 && <SnowGrains />}
-      {weatherConditions == 80 && <RainShowersSlight />}
-      {weatherConditions == 81 && <RainShowersModerate />}
-      {weatherConditions == 82 && <RainShowersViolent />}
-      {weatherConditions == 85 && <SnowShowersSlight />}
-      {weatherConditions == 86 && <SnowShowersHeavy />}
+      {weatherConditions == 0 && (
+        <SunAnim>
+          <ClearSky />
+        </SunAnim>
+      )}
+      {weatherConditions == 1 && (
+        <CloudAnim>
+          <SunAnim>
+            <MainlyClear />
+          </SunAnim>
+        </CloudAnim>
+      )}
+      {weatherConditions == 2 && (
+        <CloudAnim>
+          <SunAnim>
+            <PartlyCloudy />
+          </SunAnim>
+        </CloudAnim>
+      )}
+      {weatherConditions == 3 && (
+        <CloudAnim>
+          <Overcast />
+        </CloudAnim>
+      )}
+      {weatherConditions == 80 && (
+        <CloudAnim>
+          <SunAnim>
+            <Precipitation>
+              <RainShowersSlight />
+            </Precipitation>
+          </SunAnim>
+        </CloudAnim>
+      )}
+      {weatherConditions == 81 && (
+        <CloudAnim>
+          <SunAnim>
+            <Precipitation>
+              <RainShowersModerate />
+            </Precipitation>
+          </SunAnim>
+        </CloudAnim>
+      )}
+      {weatherConditions == 82 && (
+        <CloudAnim>
+          <SunAnim>
+            <Precipitation>
+              <RainShowersViolent />
+            </Precipitation>
+          </SunAnim>
+        </CloudAnim>
+      )}
+      {weatherConditions == 85 && (
+        <CloudAnim>
+          <SunAnim>
+            <Precipitation>
+              <SnowShowersSlight />
+            </Precipitation>
+          </SunAnim>
+        </CloudAnim>
+      )}
+      {weatherConditions == 86 && (
+        <CloudAnim>
+          <SunAnim>
+            <Precipitation>
+              <SnowShowersHeavy />
+            </Precipitation>
+          </SunAnim>
+        </CloudAnim>
+      )}
+      {(weatherConditions == 45 || weatherConditions == 48) && (
+        <CloudAnim>
+          <Fog />
+        </CloudAnim>
+      )}
+      {weatherConditions == 51 && (
+        <CloudAnim>
+          <Precipitation>
+            <DrizzleLight />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 53 && (
+        <CloudAnim>
+          <Precipitation>
+            <DrizzleModerate />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 55 && (
+        <CloudAnim>
+          <Precipitation>
+            <DrizzDense />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 56 && (
+        <CloudAnim>
+          <Precipitation>
+            <FreezingDrizzleLight />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 57 && (
+        <CloudAnim>
+          <Precipitation>
+            <FreezingDrizzleDense />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 61 && (
+        <CloudAnim>
+          <Precipitation>
+            <RainSlight />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 63 && (
+        <CloudAnim>
+          <Precipitation>
+            <RainModerate />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 65 && (
+        <CloudAnim>
+          <Precipitation>
+            <RainHeavy />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 66 && (
+        <CloudAnim>
+          <Precipitation>
+            <FreezingRainLight />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 67 && (
+        <CloudAnim>
+          <Precipitation>
+            <FreezingRainHeavy />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 71 && (
+        <CloudAnim>
+          <Precipitation>
+            <SnowFallSlight />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 73 && (
+        <CloudAnim>
+          <Precipitation>
+            <SnowFallModerate />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 75 && (
+        <CloudAnim>
+          <Precipitation>
+            <SnowFallHeavy />
+          </Precipitation>
+        </CloudAnim>
+      )}
+      {weatherConditions == 77 && (
+        <CloudAnim>
+          <Precipitation>
+            <SnowGrains />
+          </Precipitation>
+        </CloudAnim>
+      )}
       {(weatherConditions == 95 ||
         weatherConditions == 96 ||
         weatherConditions == 99) && <Thunderstorm />}
