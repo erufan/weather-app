@@ -1,5 +1,13 @@
 https://checkerfanweather.netlify.app/
 
+## animations
+
+![9-21-2024 (03-30-57)](https://github.com/user-attachments/assets/89871caf-1899-47fa-8d77-b2ac6aacbdfd)
+![9-21-2024 (03-34-15)](https://github.com/user-attachments/assets/be342cb4-ac0a-4383-a5d4-6498b2c2cadb)
+![9-21-2024 (03-36-09)](https://github.com/user-attachments/assets/16e3d046-bbe8-4600-b346-587b4144a77c)
+![9-21-2024 (03-37-34)](https://github.com/user-attachments/assets/755048da-bdd7-42c3-826a-bf51e3f91805)
+
+
 
 ![1](https://github.com/user-attachments/assets/04a0b096-58b9-4e35-9f8b-dbc07d6e099e)
 
