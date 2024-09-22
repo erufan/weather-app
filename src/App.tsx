@@ -8,6 +8,7 @@ import CityContext from "./context/CityContext";
 import useGeographic from "./hooks/useGeographic";
 import useWeather from "./hooks/useWeather";
 import WeatherContext from "./context/WeatherContext";
+import Loading from "./components/loading/Loading";
 
 function App() {
   const [input, setInput] = useState<string>("");
@@ -20,6 +21,8 @@ function App() {
   });
   const { city, err, isLoading } = useGeographic(input);
   const { weather, loading } = useWeather(location);
+
+  if (loading) return <Loading />;
 
   return (
     <InputContext.Provider value={{ input, setInput }}>
