@@ -11,14 +11,9 @@ const IconBox = ({ weatherConditions }: Props) => {
   return (
     <>
       <IconWeather weatherConditions={weatherConditions} />
-      {Object.keys(weatherCode).map(
-        (key) =>
-          parseInt(key) === weatherConditions && (
-            <Text key={key} whiteSpace={{ base: "wrap", md: "nowrap" }}>
-              {weatherCode[weatherConditions as keyof WeatherCode]}
-            </Text>
-          )
-      )}
+      <Text whiteSpace={{ base: "wrap", md: "nowrap" }}>
+        {weatherCode[weatherConditions as keyof WeatherCode]}
+      </Text>
     </>
   );
 };
