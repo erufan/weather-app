@@ -12,6 +12,7 @@ const CityInfo = () => {
           <Avatar
             src={`https://flagsapi.com/${location.country_code}/shiny/64.png`}
             borderRadius={0}
+            name={`${location.country}'s flag`}
           />
         </Box>
         <Box>
