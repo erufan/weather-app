@@ -16,9 +16,10 @@ import CityContext from "../../context/CityContext";
 
 const MenuCity = () => {
   const { city, err, isLoading } = useContext(CityContext);
-  if (err) return err;
   const { input } = useContext(InputContext);
   const { setLocation } = useContext(LocationContext);
+
+  if (err) return err;
 
   return (
     <>
